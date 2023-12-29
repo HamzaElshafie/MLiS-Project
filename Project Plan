@@ -5,8 +5,26 @@ Pre-processing:
 2.
 
 PCA:
-1.
-2.
+1:Calculate mean, variance & std of each raw feature (DONE)
+2.Normalise dataset to center data around mean
+3.Perform the PCA process
+4.Print out the vector of means after normalisation
+5.Print out the covariance matrix (9x9)
+6.Print out all 9 eigenvalues
+7.Print out all 9 eigenvectors in their sorted order
+8.Use Scree plot to determine how many PC should be selected (Kaiser rule: pick PCs with eigenvalues of at least 1)
+9.Print loadings of each feature on all the chosen PCs.
+10.Print scores of all chosen PCs
+11.If we end up with 3 PCs like in the paper,create multiple 2D biplots, each representing a pair of principal components (PC1 vs PC2, PC1 vs PC3, PC2 vs PC3)
+        Each plot shows the data points projected onto the two selected principal components and shows 9 arrows to represent the loadings of each original feature on the
+        principal components. The direction of an arrow shows the direction of a feature's maximum variance, and its length indicates the strength of the feature's influence
+        on that component. In the plot we will have the data points coloured differently according to the class they belong to.
+12. Finally, if indeed we end up with 3 PCs, plot the data in a 3D space and indicate that there seems to be 2 clusters like in the graph from the paper and
+    conclude that we will use k-means next.
+
+**Goal**
+By analyzing the biplots, we can gain insights into which features are most important in explaining the variance in the dataset
+and how those features relate to each other.
 
 K-Means:
 1.
