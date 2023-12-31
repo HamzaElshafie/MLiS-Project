@@ -6,13 +6,11 @@ Pre-processing:
 
 PCA:
 1:Calculate mean, variance & std of each raw feature (DONE)
-2.Normalise dataset to center data around mean
-3.Perform the PCA process
-4.Print out the vector of means after normalisation
-5.Print out the covariance matrix (9x9)
-6.Print out all 9 eigenvalues
-7.Print out all 9 eigenvectors in their sorted order
-8.Use Scree plot to determine how many PC should be selected (Kaiser rule: pick PCs with eigenvalues of at least 1)
+2.Normalise dataset to center data around mean (DONE)
+3.Perform the PCA process (DONE)
+6.Print out all 9 eigenvalues (DONE)
+7.Print out all 9 eigenvectors in their sorted order (DONE)
+8.Use Scree plot to determine how many PC should be selected (Kaiser rule: pick PCs with eigenvalues of at least 1) (Done Something Similar)
 9.Print loadings of each feature on all the chosen PCs.
 10.Print scores of all chosen PCs
 11.If we end up with 3 PCs like in the paper,create multiple 2D biplots, each representing a pair of principal components (PC1 vs PC2, PC1 vs PC3, PC2 vs PC3)
