@@ -149,6 +149,23 @@ class PCA:
         return np.dot(X, self.components)
 
     def explained_variance_ratio(self):
+        """
+        Calculate and store the explained variance ratio of each principal component.
+
+        The method computes the ratio of variance that each principal component accounts for. It explains
+        how much of the total variance in the data is explained by each principal component. The variance ratio
+        is calculated as the variance explained by each principal component, ```self.explained_variance``` divided
+        by the total variance explained by all the principal components specified by the user. The method then
+        updates the ``explained_variance_ratio_`` attribute of the PCA object.
+
+        Notes
+        -----
+        The 'explained_variance_ratio_' attribute will be a numpy array with the ratio of the variance explained by
+        each principal component. These values are useful in understanding the contribution of each principal component
+        to the total variance in the dataset, which can help us in making an informed decision on how many principal
+        components to retain.
+        """
+
         variance_sum = sum(self.explained_variance_)
         self.explained_variance_ratio_ = self.explained_variance_ / variance_sum
 
