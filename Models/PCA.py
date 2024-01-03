@@ -170,6 +170,42 @@ class PCA:
         self.explained_variance_ratio_ = self.explained_variance_ / variance_sum
 
     def plot_explained_variance(self, threshold_criteria, figsize=(6,6)):
+        """
+        Plot the cumulative explained variance against the number of principal components specified.
+
+        This function plots how much variance is explained by the principal components only specified in
+        ```self.n_components```. It plots one line for the cumulative explained variance ratio among all the components
+        and plots a bar chart, where the height of each bar corresponds to the variance ratio explained by each
+        principal component. Furthermore, the function creates a horizontal and perpendicular line at a defined
+        cumulative variance threshold., helping to determine an appropriate number of principal components to retain.
+
+        Parameters
+        ----------
+        threshold_criteria : float
+            Desired threshold for the cumulative explained variance.
+        figsize : tuple, optional
+            Size of the matplotlib figure. Defaults to (6, 6).
+
+        Raises
+        ------
+        ValueError
+            If the PCA model has not been fitted before calling this method.
+
+        Examples
+        -----
+        >>> import pandas as pd
+        >>> # Load example data
+        >>> from sklearn.datasets import load_iris
+        >>> data = load_iris()
+        >>> X = pd.DataFrame(data.data, columns=data.feature_names)
+        >>> y = data.target
+        >>> from sklearn.model_selection import train_test_split
+        >>> X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=0)
+        >>> pca = PCA(n_components=3)
+        >>> pca.fit(X_train)
+        >>> pca.plot_explained_variance(threshold_criteria=0.8, figsize=(9, 3.5))
+        """
+
         if self.explained_variance_ is None or self.explained_variance_ratio_ is None:
             raise ValueError("The PCA model must be fitted before plotting the explained variance.")
 
@@ -202,7 +238,6 @@ class PCA:
         ax.legend(loc='best')
         plt.show()
 
-        return fig, ax
 
     def get_loadings(self, PC=(0,1)):
         if self.components is None:
