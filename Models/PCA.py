@@ -101,8 +101,50 @@ class PCA:
         # Initialise feature names list
         self.feature_names = X.columns.tolist()
 
-
     def transform(self, X):
+        """
+        Transform the data to the new principal components space.
+
+        The function projects the data onto the principal components computed in the ``fit`` method. This transformation
+        is achieved by centering the data again using the mean vector computed in ``fit`` and then multiplying it by the
+        principal component vectors. The ``fit`` method must be called before using this method.
+
+        Parameters
+        ----------
+        X : DataFrame
+            The data to be transformed. It must have the same number of features as the dataset used in the ``fit``
+            method.
+
+        Returns
+        -------
+        numpy.ndarray
+            The transformed data array, where each row is the projection of the corresponding sample onto the
+            principal components.
+
+        Notes
+        -----
+        This method does not check for missing values in ``X``. It is the responsibility of the user to ensure that ``X``
+        is preprocessed appropriately before using this function. To appropriately apply PCA, the 'fit' method should
+        be called on the training data to fit the model appropriately and then this function can be used for the
+        transformation. It is crucial that the test data, however, is transformed directly using the previously fitted
+        model and not fit a new model to prevent data leakage.
+
+        Examples
+        -----
+        >>> import pandas as pd
+        >>> # Load example data
+        >>> from sklearn.datasets import load_iris
+        >>> data = load_iris()
+        >>> X = pd.DataFrame(data.data, columns=data.feature_names)
+        >>> y = data.target
+        >>> from sklearn.model_selection import train_test_split
+        >>> X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=0)
+        >>> pca = PCA(n_components=3)
+        >>> pca.fit(X_train)
+        >>> X_train_transformed = pca.transform(X_train)
+        >>> X_test_transformed = pca.transform(X_test)
+        """
+
         X = X - self.mean_vector
         return np.dot(X, self.components)
 
