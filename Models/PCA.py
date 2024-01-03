@@ -10,7 +10,7 @@ class PCA:
     """
     Principal Component Analysis (PCA) Class
 
-    Parameters
+    Attributes
     ----------
     n_components : int
         Number of principal components to retain.
@@ -34,7 +34,14 @@ class PCA:
     """
 
     def __init__(self, n_components):
+        """
+        Initialise the PCA instance with the number of components desired to retain.
 
+        Parameters
+        ----------
+        n_components : int
+            Number of principal components to retain.
+        """
         self.feature_names = []
         self.n_components = n_components
         self.components = None
