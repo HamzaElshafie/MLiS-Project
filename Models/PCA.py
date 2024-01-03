@@ -16,13 +16,13 @@ class PCA:
         Number of principal components to retain.
     feature_names : list
         Names of the raw features in the dataset.
-    components : np.ndarray
+    components : numpy.ndarray
         Principal components (eigenvectors of the covariance matrix).
-    mean_vector : np.ndarray
+    mean_vector : numpy.ndarray
         Mean of the features.
     explained_variance_ : np.ndarray
         Variance explained by each of the selected components.
-    explained_variance_ratio_ : np.ndarray
+    explained_variance_ratio_ : numpy.ndarray
         Percentage of variance explained by each of the selected components.
 
     References
@@ -35,7 +35,7 @@ class PCA:
 
     def __init__(self, n_components):
         """
-        Initialise the PCA instance with the number of components desired to retain.
+        Initialise the PCA object with the number of components desired to retain.
 
         Parameters
         ----------
@@ -50,6 +50,36 @@ class PCA:
         self.explained_variance_ratio_ = None
 
     def fit(self, X):
+        """
+        Fit the PCA model to the data
+
+        The function computes the principal components of the provided design matrix. The function is normally fitted to
+        the training set after splitting. It computes the mean vector, covariance matrix,eigenvalues, and eigenvectors
+        of the covariance matrix. The components (eigenvectors) are then arranged in descending order by their associated
+        eigenvalues. Only the top ``n_components`` principal components are kept if ``n_components`` is specified.
+
+        Parameters
+        ----------
+        X : DataFrame
+            The design matrix with the features.  Each column represents a feature, and each row represents a sample.
+
+        Notes
+        -----
+        The method assumes that the input data 'X' is a pandas DataFrame with numerical values. Before using this
+        method, missing values in 'X' should be addressed. The method centers the data by subtracting the mean vector
+        from each sample but does not scale the features. Therefore, it's advisable to standardise the data before
+        performing PCA if the features are on different scales.
+
+        Examples
+        -----
+        >>> import pandas as pd
+        >>> # Load example data
+        >>> from sklearn.datasets import load_iris
+        >>> data = load_iris()
+        >>> X = pd.DataFrame(data.data, columns=data.feature_names)
+        >>> pca = PCA(n_components=3)
+        >>> pca.fit(X)
+        """
         self.mean_vector = np.mean(X, axis=0)
         X = X - self.mean_vector
 
