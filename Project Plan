@@ -1,4 +1,4 @@
-Project Planner
+rProject Planner
 
 Pre-processing:
 1.
@@ -25,6 +25,7 @@ By analyzing the biplots, we can gain insights into which features are most impo
 and how those features relate to each other.
 
 K-Means:
-1.
-2.
+1. Experiment with most important feature identified from the loadings in PCA to see if the chosen features can create significant clusters
+2. Perform k-means to create the clusters and interpret where the clusters are in terms of the chosen features, which can help identify what sort of values in them features is associated with an outcome
+3. Verify the clustering against the real data to see if the clusering actually identified meaningful clusters meaning the interpretations can be taken from where the clusters are in the feature space explaining any differences between features for malignant and benign
 
