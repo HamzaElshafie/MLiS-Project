@@ -338,6 +338,50 @@ class PCA:
         return projected_data_df
 
     def biplot_2D(self, X, y, PC=(0,1), figsize=(9,5)):
+        """
+        Generates a 2D biplot of the projected data.
+
+        This method creates a 2D biplot that displays the projection of the original data ``X`` onto the specified
+        principal components and the vector loadings of each feature on these components.
+
+        Parameters
+        ----------
+        X : pd.DataFrame or np.ndarray
+            The data to be visualised. Should have the same P (features) dimensions of the data used in the ``fit`` function.
+        y : pd.Series or np.ndarray
+            The target vector with the corresponding target of each sample in ``X``. The target labels is used for color
+             coding the observations in the plot.
+        PC : tuple, optional
+            Indices of the two principal components to plot against each other in the plot. Defaults to (0, 1).
+        figsize : tuple, optional
+            Size of the figure. Defaults to (9, 5).
+
+        Returns
+        -------
+        None
+            Does not return a value but shows the biplot.
+
+        Raises
+        ------
+        ValueError
+            If the PCA model has not been fitted before calling this method or if the specified component indices are
+            invalid (outside the range of computed components).
+
+        Examples
+        --------
+        >>> import pandas as pd
+        >>> # Load example data
+        >>> from sklearn.datasets import load_iris
+        >>> data = load_iris()
+        >>> X = pd.DataFrame(data.data, columns=data.feature_names)
+        >>> y = data.target
+        >>> from sklearn.model_selection import train_test_split
+        >>> X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=0)
+        >>> pca = PCA(n_components=3)
+        >>> pca.fit(X_train)
+        >>> pca.biplot_2D(X_train, y_train)
+        """
+
         if self.components is None:
             raise ValueError("The PCA model must be fitted before creating the biplot.")
 
