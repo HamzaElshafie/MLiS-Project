@@ -272,7 +272,7 @@ class PCA:
         >>> X = pd.DataFrame(iris.data, columns=iris.feature_names)
         >>> pca = PCA(n_components=3)
         >>> pca.fit(X)
-        >>> print(loadings = pca.get_loadings())
+        >>> print(pca.get_loadings())
         """
 
         if self.components is None:
@@ -288,6 +288,41 @@ class PCA:
         return loadings
 
     def get_projected_data(self, X, PC=(0,1)):
+        """
+        Gets the projected data onto the specified principal components.
+
+        This function projects the data ``X`` onto the specified principal components and creates a DataFrame where the
+        columns represent the principal components and the rows contain the axis of each projected sample in ``X``.
+
+        Parameters
+        ----------
+        X : DataFrame
+            The data to be projected. Should have the same P (features) dimensions of the data used in the ``fit`` function.
+        PC : tuple, optional
+            Indices of the principal components to project the data onto. The indices are start from zero not one.
+            Defaults are set to (0, 1), i.e. the first two components.
+
+        Returns
+        -------
+        pd.DataFrame
+            A DataFrame containin the projected data.
+
+        Raises
+        ------
+        ValueError
+            If the PCA model has not been fitted before calling this method or if the specified principal component
+            indices are invalid (outside the range of computed components).
+
+        Examples
+        --------
+        >>> import pandas as pd
+        >>> from sklearn.datasets import load_iris
+        >>> iris = load_iris()
+        >>> X = pd.DataFrame(iris.data, columns=iris.feature_names)
+        >>> pca = PCA(n_components=3)
+        >>> pca.fit(X)
+        >>> print(pca.get_projected_data(X))
+        """
         if self.components is None:
             raise ValueError("The PCA model must be fitted before retrieving projected data.")
 
