@@ -240,6 +240,41 @@ class PCA:
 
 
     def get_loadings(self, PC=(0,1)):
+        """
+        Gets the loadings for specified principal components.
+
+        Loadings are the coefficients of the linear combination of the original raw variables from which the principal
+        components are constructed. This method returns the loadings for the specified principal components.
+
+        Parameters
+        ----------
+        PC : tuple, optional
+            Indices of the principal components for which loadings are to be retrieved. The indices are start from zero not one.
+            Defaults are set to (0, 1), i.e. the first two components.
+
+        Returns
+        -------
+        pd.DataFrame
+            A DataFrame where each column corresponds to a principal component and the rows are indexed by the original
+            feature names.
+
+        Raises
+        ------
+        ValueError
+            If the PCA model has not been fitted before calling this method or if the specified principal component
+            indices are invalid (outside the range of computed components).
+
+        Examples
+        --------
+        >>> import pandas as pd
+        >>> from sklearn.datasets import load_iris
+        >>> iris = load_iris()
+        >>> X = pd.DataFrame(iris.data, columns=iris.feature_names)
+        >>> pca = PCA(n_components=3)
+        >>> pca.fit(X)
+        >>> print(loadings = pca.get_loadings())
+        """
+
         if self.components is None:
             raise ValueError("The PCA model must be fitted before retrieving loadings.")
 
