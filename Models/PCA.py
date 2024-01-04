@@ -419,6 +419,52 @@ class PCA:
         plt.show()
 
     def biplot_3D(self, X, y, PC=(0,1,2), width=700, height=600):
+        """
+        Generates a 3D interactive biplot of the projected data.
+
+        This method creates a 3D interactive biplot that displays the projection of the original data ``X`` onto the specified
+        principal components and the vector loadings of each feature on these components.
+
+        Parameters
+        ----------
+        X : pd.DataFrame or np.ndarray
+            The data to be visualised. Should have the same P (features) dimensions of the data used in the ``fit`` function.
+        y : pd.Series or np.ndarray
+            The target vector with the corresponding target of each sample in ``X``. The target labels is used for color
+             coding the observations in the plot.
+        PC : tuple, optional
+            Indices of the three principal components to plot against each other in the plot. Defaults to (0, 1,2). i.e
+            first three components.
+        width : int, optional
+            Width of the plot.
+        height : int, optional
+            Height of the plot.
+
+        Returns
+        -------
+        None
+            Does not return a value but displays the biplot.
+
+        Raises
+        ------
+        ValueError
+            If the PCA model has not been fitted before calling this method or if the specified component indices are
+            invalid (outside the range of computed components).
+
+        Examples
+        --------
+        >>> import pandas as pd
+        >>> # Load example data
+        >>> from sklearn.datasets import load_iris
+        >>> data = load_iris()
+        >>> X = pd.DataFrame(data.data, columns=data.feature_names)
+        >>> y = data.target
+        >>> from sklearn.model_selection import train_test_split
+        >>> X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=0)
+        >>> pca = PCA(n_components=3)
+        >>> pca.fit(X_train)
+        >>> pca.biplot_3D(X_train, y_train, PC=(0,1,2), width=1200, height=700)
+        """
         if self.components is None:
             raise ValueError("The PCA model must be fitted before creating the biplot.")
 
