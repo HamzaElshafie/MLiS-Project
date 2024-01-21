@@ -3,7 +3,7 @@
 Arvin Corotana and Hamza Elshafie
 
 # Paper Link
-https://www.overleaf.com/project/65843ddaf7f4d6eb6f05c0ed   (Will change this later to make the paper available on google drive and accessiblke to everyone).
+(https://drive.google.com/file/d/1W9rt2TPTjrHVn26hNwJ095S8dBl-AgO_/view?usp=share_link)
 
 # Interactive Notebook HTML Link
 Add link to HTML notebook link later and submit it with notebook file so they can see the interactive 3D biplot.
